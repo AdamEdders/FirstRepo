@@ -11,6 +11,9 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		
+		//Var args example
+		showVarArgs("Tom","Jose","Bob");
+		
 		staticHelper();
 		staticHelper();
 		staticHelper();
@@ -23,11 +26,11 @@ public class Driver {
 		Animal.count++;
 		b.species = "tiger";
 		
-		System.out.println("Animal a: " + Animal.count);
-		System.out.println("Animal b: " + Animal.count);
+		System.out.println("Animal a: " + Animal.count + ", " + a.species);
+		System.out.println("Animal b: " + Animal.count + ", " + b.species);
 		
 		if(a.species == "giraffe") {
-			//Here, message belongs to BLOCK scoper
+			//Here, message belongs to BLOCK scope
 			String message = "Wow, its a giraffe!";	
 			System.out.println(message);
 		}
@@ -42,6 +45,11 @@ public class Driver {
 		
 		System.out.println(methodInt);
 	
+	}
+	public static void showVarArgs(String... strings) {
+		for (String s : strings) {
+			System.out.println(s);
+		}
 	}
 }
 
