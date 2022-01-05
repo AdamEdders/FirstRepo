@@ -1,12 +1,12 @@
 package com.questions.assignment;
 
 public class Q4 {
-	static int factorial(int N) {
-		if (N == 0) {
-			return 1;
-			
-			return N*factorial(N-1);
+	public static void factorial(int n) {
+		long fact = 1l;
+		for (int i = 2; i <= n; i++) {
+			fact = fact*i;
 		}
+		
+		System.out.println(fact);
 	}
-
 }
