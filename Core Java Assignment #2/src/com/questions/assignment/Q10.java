@@ -5,6 +5,7 @@ public class Q10 {
 		//Set up ternary operator
 		long min = (a < b) ? a : b;
 		
+		System.out.println();
 		System.out.println("The minimum number is " + min);
 	}
 

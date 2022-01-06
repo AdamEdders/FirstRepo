@@ -23,7 +23,7 @@ public class Q9 {
 		for (int i = 0; i <= 100; i++) {
 			numbers.add(i);
 			if (checkPrime(i)) {
-				System.out.println(i);
+				System.out.print(i + " ");
 			}
 		}
 	}

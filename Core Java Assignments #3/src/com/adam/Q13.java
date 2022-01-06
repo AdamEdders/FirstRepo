@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class Q13 {
 	public static void triangle() {
 		//Instantiate scanner to ask for how many lines
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter n: ");
-		int n = scan.nextInt();
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter n: ");
+		int n = scanner.nextInt();
 		//variable to keep count
 		int k = 1;
 		//Loop for how many lines
@@ -20,6 +20,5 @@ public class Q13 {
 			}
 			System.out.println();
 		}
-		scan.close();
 	}
 }
