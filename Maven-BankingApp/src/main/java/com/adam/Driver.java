@@ -2,6 +2,8 @@ package com.adam;
 //import Scanner
 import java.util.Scanner;
 
+import com.adam.employee.EmployeeLogin;
+
 public class Driver {
 	
 	//Instantiate Scanner for user input
@@ -29,6 +31,8 @@ public class Driver {
 					break;
 				}else if(lt.charAt(0) == '2') {
 					//Start Employee Login
+					EmployeeLogin.setAccount();
+					EmployeeLogin.employeeSignIn();
 					System.out.println();
 					
 					break;

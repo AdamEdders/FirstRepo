@@ -16,7 +16,8 @@ public class CustomerMenu {
 			System.out.println("3) Make a deposit");
 			System.out.println("4) Transfer money between accounts");
 			System.out.println("5) Check Account Information");
-			System.out.println("6) Quit");
+			System.out.println("6) Go Back to Home");
+			System.out.println("7) Quit");
 			System.out.println();
 			System.out.print("Please choose the number that corresponds your answer: ");
 			String x = scan.nextLine();
@@ -88,6 +89,11 @@ public class CustomerMenu {
 				System.out.println();
 			break;
 			case "6":
+				//Go back to Driver
+				System.out.println();
+				Driver.main(null);
+			break;
+			case "7":
 				//End Customer Access
 				System.out.println();
 				System.out.println();

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class CustomerLogin {
 	//Instantiate ArrayList to hold Account Information
-	static ArrayList<String> accountInformation = new ArrayList<String>();
+	public static ArrayList<String> accountInformation = new ArrayList<String>();
 	//Instantiate Scanner and get user input
 	static Scanner scan = new Scanner(System.in);
 	
