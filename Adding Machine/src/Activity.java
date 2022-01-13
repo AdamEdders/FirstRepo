@@ -13,6 +13,7 @@ public class Activity {
 
 		System.out.print("Please type your second number and press Enter: ");
 		String b = scanner.nextLine();
+		//change string to int
 		int y = Integer.parseInt(b);  
 
 		//close scanner
