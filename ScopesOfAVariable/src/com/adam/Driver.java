@@ -12,6 +12,7 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		//Var args example
+		//Var args can take 0 or more arguements and turn them into an array
 		showVarArgs("Tom","Jose","Bob");
 		
 		staticHelper();
@@ -46,7 +47,8 @@ public class Driver {
 		System.out.println(methodInt);
 	
 	}
-	public static void showVarArgs(String... strings) {
+	//If multiple paramaters the var args paramater must be the final paramter
+	public static void showVarArgs(String s2, String... strings) {
 		for (String s : strings) {
 			System.out.println(s);
 		}
