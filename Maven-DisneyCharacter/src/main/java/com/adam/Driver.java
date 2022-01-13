@@ -22,6 +22,7 @@ public class Driver extends Question1 {
 		char b = Question1.answer2;
 		char c = Question1.answer3;
 		char d = Question1.answer4;
+		//Sends answers to results
 		System.out.println(Results.results(a,b,c,d));
 		scanner.close();
 	}
