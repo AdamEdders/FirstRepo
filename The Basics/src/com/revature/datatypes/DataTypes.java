@@ -5,7 +5,7 @@ public class DataTypes {
 		//Representing numbers
 		int i = 0; //Declaring i as a variable with integer value 1
 		short s; // Declaring s as a variable with a short value of 16 bits
-		long l; // Declaring l as a variable with a long value og 64 bits
+		long l; // Declaring l as a variable with a long value of 64 bits
 		
 		//Representing Fractions
 		float f = 3.9f; // 32 bits

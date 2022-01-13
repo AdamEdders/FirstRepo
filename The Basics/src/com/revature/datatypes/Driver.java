@@ -11,9 +11,8 @@ public class Driver {
 		
 		
 		System.out.println(dt.add(1, 2));
-		
+		//Will return the same as above
 		int answer = dt.add(55, 45);
-		
 		System.out.println(answer);
 		
 		Dog felix = new Dog(), henry = new Dog(), patty = new Dog();
