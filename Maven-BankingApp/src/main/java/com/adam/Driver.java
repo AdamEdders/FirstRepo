@@ -30,7 +30,7 @@ public class Driver {
 					CustomerLogin.startUp();
 					break;
 				}else if(lt.charAt(0) == '2') {
-					//Start Employee Login
+					//Create ans Start Employee Login
 					EmployeeLogin.setAccount();
 					EmployeeLogin.employeeSignIn();
 					System.out.println();
