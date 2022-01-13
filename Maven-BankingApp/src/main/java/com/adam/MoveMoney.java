@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class MoveMoney {
 	
 	static Scanner scan = new Scanner(System.in);
-	static ArrayList<Double> accountBalance = new ArrayList<Double>();
+	public static ArrayList<Double> accountBalance = new ArrayList<Double>();
 	static boolean x = true;
 	
 	public static void setAccount() {

@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class JointMoveMoney {
 	static Scanner scan = new Scanner(System.in);
-	static ArrayList<Double> accountBalance1 = new ArrayList<Double>();
-	static ArrayList<Double> accountBalance2= new ArrayList<Double>();
+	public static ArrayList<Double> accountBalance1 = new ArrayList<Double>();
+	public static ArrayList<Double> accountBalance2= new ArrayList<Double>();
 	static boolean x = true;
 	
 	public static void setAccount() {

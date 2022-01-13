@@ -10,7 +10,7 @@ public class ApplyForAccount extends CustomerLogin {
 	//Instantiate Scanner and get user input
 	static Scanner scan = new Scanner(System.in);
 	//Instantiate Array List to determine if a joint account has been made
-	static ArrayList<Integer> accountCheck = new ArrayList<Integer>();
+	public static ArrayList<Integer> accountCheck = new ArrayList<Integer>();
 	static boolean x = true;
 	
 	public static void applyForAccount() {
