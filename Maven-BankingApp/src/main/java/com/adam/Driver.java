@@ -2,6 +2,7 @@ package com.adam;
 //import Scanner
 import java.util.Scanner;
 
+import com.adam.bankadmin.AdminLogin;
 import com.adam.employee.EmployeeLogin;
 
 public class Driver {
@@ -30,8 +31,7 @@ public class Driver {
 					CustomerLogin.startUp();
 					break;
 				}else if(lt.charAt(0) == '2') {
-					//Create ans Start Employee Login
-					EmployeeLogin.setAccount();
+					//Create and Start Employee Login
 					EmployeeLogin.employeeSignIn();
 					System.out.println();
 					
@@ -39,7 +39,7 @@ public class Driver {
 				}else if(lt.charAt(0) == '3') {
 					//Start Bank Admin Login
 					System.out.println();
-					
+					AdminLogin.adminSignIn();
 					break;
 				}else{
 					//User did not input answer correctly

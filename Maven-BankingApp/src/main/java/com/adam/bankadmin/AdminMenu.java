@@ -1,4 +1,4 @@
-package com.adam.employee;
+package com.adam.bankadmin;
 //import Scanner
 import java.util.Scanner;
 
@@ -7,20 +7,24 @@ import com.adam.CustomerLogin;
 import com.adam.Driver;
 import com.adam.JointMoveMoney;
 import com.adam.MoveMoney;
+import com.adam.employee.EmployeeAccountManagement;
 
-public class EmployeeMenu {
+public class AdminMenu {
 	static Scanner scan = new Scanner(System.in);
 	
-	public static void employeeOptions() {
+	public static void adminOptions() {
 		System.out.println();
 		while (true) {
-			System.out.println("Welcome to the Employee Menu.");
+			System.out.println("Welcome to the Bank Admin Menu.");
 			System.out.println("What would you like to do today?");
 			System.out.println();
 			System.out.println("1) View Customer Account Information");
 			System.out.println("2) Deny/Approve Accounts");
-			System.out.println("3) Go Back to Home");
-			System.out.println("4) Quit");
+			System.out.println("3) Withdraw from an Account");
+			System.out.println("4) Deposit from an Account");
+			System.out.println("5) Transfer between a Joint Account");
+			System.out.println("6) Go Back to Home");
+			System.out.println("7) Quit");
 			System.out.println();
 			System.out.print("Please choose the number that corresponds your answer: ");
 			String x = scan.nextLine();
@@ -49,14 +53,55 @@ public class EmployeeMenu {
 					//Enter Account Management
 					EmployeeAccountManagement.accounts();
 				}
-				
 			break;
 			case "3":
+				if(ApplyForAccount.accountCheck.contains(1)) {
+					//Enter withdrawal
+					MoveMoney.withdraw();
+				}else if(ApplyForAccount.accountCheck.contains(2)){
+					//Enter Joint withdrawal
+					JointMoveMoney.jointWithdraw();
+				}else {
+					System.out.println();
+					System.out.println("There are no accounts in the system.");
+					System.out.println();
+				}
+			break;
+			case "4":
+				if(ApplyForAccount.accountCheck.contains(1)) {
+					//Enter deposit
+					MoveMoney.setAccount();
+					MoveMoney.deposit();
+				}else if(ApplyForAccount.accountCheck.contains(2)){
+					//Enter Joint deposit
+					JointMoveMoney.setAccount();
+					JointMoveMoney.jointDeposit();
+				}else {
+					System.out.println();
+					System.out.println("There are no accounts in the system.");
+					System.out.println();
+				}
+			break;
+			case "5":
+				if(ApplyForAccount.accountCheck.contains(1)) {
+					System.out.println();
+					System.out.println("There are no joint accounts in the system.");
+					System.out.println();
+				}else if(ApplyForAccount.accountCheck.contains(2)){
+					//Enter Transfer Money
+					JointMoveMoney.transfer();
+				}else {
+					System.out.println();
+					System.out.println("There are no joint accounts in the system.");
+					System.out.println();
+				}
+			break;
+			case "6":
 				//Go back to Driver
 				System.out.println();
 				Driver.main(null);
 			break;
-			case "4":
+			case "7":
 				//End Customer Access
 				System.out.println();
 				System.out.println();
@@ -69,9 +114,8 @@ public class EmployeeMenu {
 				System.out.println("Sorry, you did not type in a correct number, please try again.");
 			break;
 			}
-
-
-		}		
-	}//END employeeOptions
+		}
+		
+	}//END adminOptions
 
 }

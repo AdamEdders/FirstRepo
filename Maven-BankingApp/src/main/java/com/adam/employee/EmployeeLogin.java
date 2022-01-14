@@ -7,17 +7,6 @@ import java.util.ArrayList;
 public class EmployeeLogin {
 	static Scanner scan = new Scanner(System.in);
 	static ArrayList<String> employeeInformation = new ArrayList<String>();
-	static boolean x = true;
-	
-	public static void setAccount() {
-		//To enter in employee data
-		if(x) {
-			employeeInformation.add("Cheddars");
-			employeeInformation.add("Slugger1");
-			x = false;
-		}
-		
-	}//END setAccount
 	
 	public static void employeeSignIn() {
 		System.out.println();
@@ -31,7 +20,7 @@ public class EmployeeLogin {
 			System.out.print("Please enter the employee password: ");
 			String password = scan.nextLine();
 			//if statement to confirm username and password.
-			if(employeeInformation.contains(username) && employeeInformation.contains(password)) {
+			if(username.equals("Cheddars") && password.equals("Slugger1")) {
 				System.out.println();
 				System.out.println("You have logged in!");
 				//Enter Employee Menu
