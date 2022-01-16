@@ -7,7 +7,10 @@ public class MoveMoney {
 	
 	static Scanner scan = new Scanner(System.in);
 	public static ArrayList<Double> accountBalance = new ArrayList<Double>();
+	//boolean x to place starting value in arrayList; opens on deposit
 	static boolean x = true;
+	//
+	static double newAmount,withdraw,deposit;
 	
 	public static void setAccount() {
 		double i = 0;
@@ -18,43 +21,63 @@ public class MoveMoney {
 	}//END setAccount
 	
 	public static void deposit() {
-		System.out.println();
-		System.out.println("Your account balance is: " + accountBalance);
-		System.out.print("How much money would you like to deposit? ");
-		double deposit = scan.nextDouble();
-		double newAmount = (accountBalance.get(0) + deposit);
-		accountBalance.set(0, newAmount);
-		System.out.println("Thank you for making a deposit.");
-		System.out.println("Your new account balance is: " + accountBalance);
-		System.out.println();
+		while(true) {
+			System.out.println("Your account balance is: " + accountBalance);
+			System.out.print("How much money would you like to deposit? ");
+			try {
+				deposit = scan.nextDouble();
+				if(deposit < 0) {
+					//User cannot deposit a negative value
+					Etc.incorrect();
+				}else {
+					System.out.println();
+					newAmount = accountBalance.get(0) + deposit;
+					accountBalance.set(0, newAmount);
+					System.out.println("Thank you for making a deposit.");
+					System.out.println("Your new account balance is: " + accountBalance);
+					System.out.println();
+					break;
+				}
+			}catch (Exception e) {
+				String error = scan.nextLine();
+				//User responded with letters
+				Etc.incorrect();
+			}
+		}
 	}//END deposit
 	
 	public static void withdraw() {
-		System.out.println();
 		if (x) {
-			System.out.println();
-			System.out.println("Sorry you must deposit money first in order to withdraw any.");
-			System.out.println();
+			//User has not deposited any money yet
+			Etc.noFunds();
 		}else {
-			double withdraw = 0;
-			double newAmount = 0;
-			System.out.println("Your account balance for is : " + accountBalance);
-			System.out.print("How much money would you like to withdraw? ");
-			System.out.println();
-			withdraw = scan.nextDouble();
-			newAmount = accountBalance.get(0) - withdraw;
-			if(newAmount < 0) {
-				System.out.println();
-				System.out.println("Im sorry, you will go negative if you take that amount out.");
-				System.out.println();
-			}else {
-				accountBalance.set(0,newAmount);
-				System.out.println();
-				System.out.println("You have made a withdrawal of " + withdraw + " dollars.");
-				System.out.println("Your new account balance is: " + accountBalance);
-				System.out.println();
+			while(true) {
+				withdraw = 0;
+				newAmount = 0;
+				try {
+					System.out.println("Your account balance is : " + accountBalance);
+					System.out.print("How much money would you like to withdraw? ");
+					withdraw = scan.nextDouble();
+					System.out.println();
+					if(withdraw < 0) {
+						//User cannot deposit a negative value
+						Etc.incorrect();
+					}else {
+						newAmount = accountBalance.get(0) - withdraw;
+						if(newAmount < 0) {
+							//User does not have the funds
+							Etc.negative();
+						}else {
+							Etc.setAmount();
+							break;
+						}
+					}
+				}catch(Exception e) {
+					String error = scan.nextLine();
+					//User did not respond with an integer
+					Etc.incorrect();
+				}
 			}
 		}
 	}//END withdraw
-
 }

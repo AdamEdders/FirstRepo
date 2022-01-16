@@ -4,142 +4,118 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-
 public class ApplyForAccount extends CustomerLogin {
-	static CustomerLogin cl = new CustomerLogin();
+	
 	//Instantiate Scanner and get user input
 	static Scanner scan = new Scanner(System.in);
 	//Instantiate Array List to determine if a joint account has been made
 	public static ArrayList<Integer> accountCheck = new ArrayList<Integer>();
+	//Boolean x for setting account type
 	static boolean x = true;
+	//Strings for creating accounts
+	static String fName, lName, fName2, lName2, fName3, lName3;
 	
+	@SuppressWarnings("unused")
 	public static void applyForAccount() {
-		System.out.println();
-		System.out.println();
 		System.out.println("You have chosen to apply for an account");
 		while(true) {
+			try {
 			System.out.println("Which account type would you like to apply for?");
 			System.out.println();
 			System.out.println("1) Personal");
 			System.out.println("2) Joint");
 			System.out.println();
 			System.out.print("Please choose the number that corresponds your answer: ");
-			try {
-				String accountType = scan.nextLine();
-				char at = accountType.charAt(0);
+			int accountType = scan.nextInt();
 				//if statement to send user to correct method
-				if (at == '1') {
+				if (accountType == 1) {
+					System.out.println();
 					createPersonal();
 					break;
-				}else if(at == '2') {
+				}else if(accountType == 2) {
+					System.out.println();
 					createJoint();
 					break;
 				}else {
 					//user did not input answer correctly
-					System.out.println();
-					System.out.println();
-					System.out.println("I'm sorry, I did not understand your answer, please try again.");
+					Etc.incorrect();
 				}
 			}catch(Exception e) {
-				//user left input empty
-				System.out.println();
-				System.out.println();
-				System.out.println("I'm sorry, I did not understand your answer, please try again.");
+				String error = scan.nextLine();
+				//User did not respond with an integer
+				Etc.incorrect();	
 			}
 		}
 	}//END applyForAccount
 	
 	@SuppressWarnings("static-access")
 	public static void createPersonal() {
+		String blank = scan.nextLine();
+		
+		//if statement to assign account type as personal
 		if (x) {
 			accountCheck.add(1);
 			x = false;
 		}
-		String fName,lName;
-		System.out.println();
-		System.out.println();
+
 		System.out.println("To create a personal account all we need is your first and last name.");
-		System.out.println();
 		while(true) {
+			System.out.println();
 			System.out.print("Please enter your first name: ");
 			fName = scan.nextLine();
 			System.out.print("Please enter your last name: ");
 			lName = scan.nextLine();
-			System.out.println();
-			if(fName == "" || lName == "") {
-				System.out.println();
-				System.out.println();
-				System.out.println("It seems you may have left one of the options blank, please try again.");
+			if(fName.isEmpty() || lName.isEmpty()) {
+				//User response was blank
+				Etc.incorrect();
 			}else {
+				System.out.println();
 				break;
 			}
 		}	
-		System.out.println("Congratulations on your new account!");
-		System.out.println("You will now be given a bank account number.");
-		int accountNumber = ThreadLocalRandom.current().nextInt(10000, 99998 + 1);
-		String s = String.valueOf(accountNumber);
-		cl.accountInformation.add(fName);
-		cl.accountInformation.add(lName);
-		cl.accountInformation.add(s);
-		System.out.println("Your personal account number is " + s + " .");
-		System.out.println("Please do not forget it.");
-		System.out.println();
+		Etc.fillAccount();
 	}//END createPersonal
 	
-	@SuppressWarnings("static-access")
+
 	public static void createJoint() {
+		String blank = scan.nextLine();
+		//if statement to assign account type as personal
 		if (x) {
 			accountCheck.add(2);
 			x = false;
 		}
-		String fName,lName,fName2,lName2;
-		System.out.println();
-		System.out.println();
+		
 		System.out.println("To create a joint account all we need is both first and last names.");
-		System.out.println();
 		while(true) {
-			System.out.print("Please enter your first name: ");
-			fName = scan.nextLine();
-			System.out.print("Please enter your last name: ");
-			lName = scan.nextLine();
 			System.out.println();
-			if(fName == "" || lName == "") {
-				System.out.println();
-				System.out.println();
-				System.out.println("It seems you may have left one of the options blank, please try again.");
-			}else {
-				break;
-			}
-		}
-		System.out.println();
-		System.out.println();
-		while(true) {
-			System.out.println("Now for the second account.");
+			System.out.println("This is for the first name on the account.");
 			System.out.print("Please enter your first name: ");
 			fName2 = scan.nextLine();
 			System.out.print("Please enter your last name: ");
 			lName2 = scan.nextLine();
-			System.out.println();
-			if(fName2 == "" || lName2 == "") {
-				System.out.println();
-				System.out.println();
-				System.out.println("It seems you may have left one of the options blank, please try again.");
+			if(fName2.isEmpty() || lName2.isEmpty() ) {
+				//User response was blank
+				Etc.incorrect();
 			}else {
 				break;
 			}
 		}
-		System.out.println("Congratulations on your new account!");
-		System.out.println("You will now be given a bank account number.");
-		int accountNumber = ThreadLocalRandom.current().nextInt(10000, 99998 + 1);
-		String s = String.valueOf(accountNumber);
-		cl.accountInformation.add(fName);
-		cl.accountInformation.add(lName);
-		cl.accountInformation.add(fName2);
-		cl.accountInformation.add(lName2);
-		cl.accountInformation.add(s);
-		System.out.println("Your joint account number is " + s + " .");
-		System.out.println("Please do not forget it.");
-		System.out.println();
+		while(true) {
+			System.out.println();
+			System.out.println("Now for the second account.");
+			System.out.print("Please enter your first name: ");
+			fName3 = scan.nextLine();
+			System.out.print("Please enter your last name: ");
+			lName3 = scan.nextLine();
+			System.out.println();
+			if(fName3.isEmpty() || lName3.isEmpty()) {
+				//User response was blank
+				Etc.incorrect();
+			}else {
+				System.out.println();
+				break;
+			}
+		}
+		Etc.fillJointAccount();
 	}//END createJoint
-
 }

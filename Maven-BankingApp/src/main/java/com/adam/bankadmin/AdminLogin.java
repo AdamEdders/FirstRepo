@@ -3,14 +3,17 @@ import java.util.ArrayList;
 //import Scanner
 import java.util.Scanner;
 
+import com.adam.Driver;
+import com.adam.Etc;
+
 public class AdminLogin {
 	
 	static Scanner scan = new Scanner(System.in);
 	static ArrayList<String> adminInformation = new ArrayList<String>();
 	
 	public static void adminSignIn() {
-		System.out.println();
 		System.out.println("You have chosen Bank Admin Login");
+		System.out.println("If you want to leave this screen type 'BACK' as a response.");
 		System.out.println();
 		while(true) {
 			try {
@@ -23,17 +26,17 @@ public class AdminLogin {
 					//Enter Admin menu
 					AdminMenu.adminOptions();
 					break;
+				}else if(pin.equals("BACK")) {
+					System.out.println();
+					//Back to Home Screen
+					Driver.main(null);
 				}else if(pin.isEmpty()){
-					System.out.println();
-					System.out.println("You cannot put in an empty response.");
+					Etc.incorrect();
 				}else {
-					System.out.println();
-					System.out.println("Sorry that response is incorrect.");
+					Etc.incorrect();
 				}
 			}catch(Exception e) {
-				System.out.println();
-				System.out.println("Sorry, I did not understand your answer.");
-				System.out.println();
+				Etc.incorrect();
 			}
 		}
 	}//END adminSignIn
