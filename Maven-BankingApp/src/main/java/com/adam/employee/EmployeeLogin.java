@@ -4,15 +4,13 @@ import java.util.Scanner;
 
 import com.adam.Driver;
 import com.adam.Etc;
-
-//import ArrayList
-import java.util.ArrayList;
+import com.adam.SQL.DAOLogins;
 
 public class EmployeeLogin {
 	static Scanner scan = new Scanner(System.in);
-	static ArrayList<String> employeeInformation = new ArrayList<String>();
 	
 	public static void employeeSignIn() {
+		System.out.println("*******************************");
 		System.out.println("You have chosen Employee Login.");
 		System.out.println();
 		System.out.println("Let's sign into the employee account.");
@@ -24,7 +22,8 @@ public class EmployeeLogin {
 			System.out.print("Please enter the employee password: ");
 			String password = scan.nextLine();
 			//if statement to confirm username and password.
-			if(username.equals("Cheddars") && password.equals("Slugger1")) {
+			DAOLogins daol = new DAOLogins();
+			if(daol.employees(username, password)) {
 				System.out.println();
 				System.out.println("You have logged in!");
 				System.out.println();
@@ -33,6 +32,7 @@ public class EmployeeLogin {
 				break;
 			}else if(username.equals("BACK") || password.equals("BACK")) {
 				System.out.println();
+				System.out.println("*******************************************");
 				//Back to Home Screen
 				Driver.main(null);
 			}else {

@@ -1,5 +1,4 @@
 package com.adam;
-//import Scanner
 import java.util.Scanner;
 
 import com.adam.bankadmin.AdminLogin;
@@ -11,7 +10,6 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		
-		/*
 		//while loop for user error
 		while(true) {
 			//Welcome user and choose login type
@@ -22,7 +20,7 @@ public class Driver {
 			System.out.println("3) Bank Admin");
 			System.out.println("4) Quit");
 			System.out.println();
-			System.out.print("Please choose the number that corresponds your login type: ");
+			System.out.print("Please choose the number that corresponds to your login type: ");
 			String lt = scan.nextLine();
 			//Use nested if-statements to determine login type
 			if (lt.equals("1")) {
@@ -47,6 +45,6 @@ public class Driver {
 				//User did not input response correctly
 				Etc.incorrect();
 			}
-		}*/
+		}
 	}
 }

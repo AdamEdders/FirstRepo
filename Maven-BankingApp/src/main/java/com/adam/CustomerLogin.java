@@ -1,16 +1,15 @@
 package com.adam;
-//import Scanner
 import java.util.Scanner;
-//import ArrayList
-import java.util.ArrayList;
+import com.adam.SQL.DAOLogins;
 
 public class CustomerLogin {
-	//Instantiate ArrayList to hold Account Information
-	public static ArrayList<String> accountInformation = new ArrayList<String>();
 	//Instantiate Scanner and get user input
 	static Scanner scan = new Scanner(System.in);
 	
+	static String usernameCheck, passwordCheck;
+	
 	public static void startUp() {
+		System.out.println("******************************");
 		System.out.println("You have chosen Customer Login");
 		System.out.println();
 		//while loop for user error
@@ -21,7 +20,7 @@ public class CustomerLogin {
 			System.out.println("2) Sign into Account");
 			System.out.println("3) Go Back to Home Screen");
 			System.out.println();
-			System.out.print("Please choose the number that corresponds your answer: ");
+			System.out.print("Please choose the number that corresponds to your answer: ");
 			String choice = scan.nextLine();
 			if (choice.equals("1")) {
 				System.out.println();
@@ -35,8 +34,10 @@ public class CustomerLogin {
 				break;
 			}else if(choice.equals("3")) {
 				System.out.println();
+				System.out.println("*******************************************");
 				//Back to Home Screen
 				Driver.main(null);
+				break;
 			}else {
 				//User did not input answer correctly
 				Etc.incorrect();
@@ -45,7 +46,9 @@ public class CustomerLogin {
 	}//END startUp
 	
 	public static void AccountCreation() {
+		System.out.println("************************************");
 		System.out.println("You have chosen to create an account");
+		System.out.println("If you want to leave this screen type 'BACK' as the username and leave password blank.");
 		System.out.println();
 		//while loop for user error
 		while(true) {
@@ -65,11 +68,17 @@ public class CustomerLogin {
 				String a = answer.toLowerCase();
 				//if statement to confirm username and password
 				if (a.equals("yes")) {
-					System.out.println();
-					accountInformation.add(username);
-					accountInformation.add(password);
-					signIn();
-					break;
+					DAOLogins userDAO = new DAOLogins();
+					if(userDAO.check(username)) {
+						Etc.duplicate();
+						Driver.main(null);
+						break;
+					}else {
+						System.out.println();
+						userDAO.create(username,password);
+						signIn();
+						break;
+					}
 				}else if(a.equals("no")) {
 					//User does not agree with shown username/password
 					Etc.retry();
@@ -77,6 +86,12 @@ public class CustomerLogin {
 					//User did not input response correctly
 					Etc.incorrect();
 				}
+			}else if (username.equals("BACK") || password.equals("BACK")) {
+				//Go back to Driver
+				System.out.println();
+				System.out.println("*******************************************");
+				Driver.main(null);
+				break;
 			}else {
 				//User did not input response correctly
 				Etc.incorrect();
@@ -85,27 +100,33 @@ public class CustomerLogin {
 	}//END AccountCreation
 	
 	public static void signIn() {
+		System.out.println("****************************");
 		System.out.println("Lets sign into your account!");
 		System.out.println("If you want to leave this screen type 'BACK' as a response.");
 		System.out.println();
 		while(true) {
 			System.out.print("Please enter your username: ");
-			String usernameCheck = scan.nextLine();
+			usernameCheck = scan.nextLine();
 			System.out.print("Please enter your password: ");
-			String passwordCheck = scan.nextLine();
+			passwordCheck = scan.nextLine();
 			//if statement to check if username and password are correct.
-			if(accountInformation.contains(usernameCheck) && accountInformation.contains(passwordCheck)) {
+			DAOLogins userDAO = new DAOLogins();
+			if(userDAO.customers(usernameCheck, passwordCheck)) {
+				System.out.println();
+				System.out.println("You have logged in!");
 				System.out.println();
 				//Enter Customer Menu
 				CustomerMenu.customerOptions();
 				break;
 			}else if(usernameCheck.equals("BACK") || passwordCheck.equals("BACK")) {
 				System.out.println();
+				System.out.println("*******************************************");
 				//Back to Home Screen
 				Driver.main(null);
+				break;
 			}else {
 				//User response was incorrect
-				Etc.incorrect();
+				Etc.wrong();
 			}
 		}			
 	}//END signIn

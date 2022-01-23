@@ -1,18 +1,19 @@
 package com.adam;
-import java.util.InputMismatchException;
-//import Scanner
 import java.util.Scanner;
+
+import com.adam.SQL.DAOAccounts;
 
 public class CustomerMenu {
 	//Instantiate Scanner and get user input
 	static Scanner scan = new Scanner(System.in);
 	
-	@SuppressWarnings("unused")
 	public static void customerOptions() {
+		DAOAccounts daoa = new DAOAccounts();
 		//while loop to allow user to complete as many tasks as wanted
 		while(true) {
 			//try-catch block for Input Mismatch
 			try {
+				System.out.println("*****************************");
 				System.out.println("Welcome to the Customer Menu!");
 				System.out.println("What would you like to do today?");
 				System.out.println();
@@ -21,76 +22,64 @@ public class CustomerMenu {
 				System.out.println("3) Make a deposit");
 				System.out.println("4) Transfer money between accounts");
 				System.out.println("5) Check Account Information");
-				System.out.println("6) Go Back to Home");
-				System.out.println("7) Quit");
+				System.out.println("6) Show Account Balances");
+				System.out.println("7) Go Back to Home");
+				System.out.println("8) Quit");
 				System.out.println();
-				System.out.print("Please choose the number that corresponds your answer: ");
+				System.out.print("Please choose the number that corresponds to your answer: ");
 				int x = scan.nextInt();
 				//switch statement to access all possible options
 				switch(x) {
 				case 1:
-					if(ApplyForAccount.accountCheck.isEmpty()) {
 						System.out.println();
 						//Enter account application
 						ApplyForAccount.applyForAccount();
-					}else {
-						//User is trying to open 2 accounts
-						Etc.single();
-					}
 				break;
 				case 2:
-					if(ApplyForAccount.accountCheck.contains(1)) {
+					if (daoa.checkStatus(CustomerLogin.usernameCheck)) {
 						System.out.println();
 						//Enter withdrawal
 						MoveMoney.withdraw();
-					}else if(ApplyForAccount.accountCheck.contains(2)){
-						System.out.println();
-						//Enter Joint withdrawal
-						JointMoveMoney.jointWithdraw();
 					}else {
-						//User has not opened an account yet
-						Etc.empty();
+						Etc.status();
 					}
 				break;
 				case 3:
-					if(ApplyForAccount.accountCheck.contains(1)) {
+					if (daoa.checkStatus(CustomerLogin.usernameCheck)) {
 						System.out.println();
-						//Enter deposit
-						MoveMoney.setAccount();
+						//Enter Customer Deposit
 						MoveMoney.deposit();
-					}else if(ApplyForAccount.accountCheck.contains(2)){
-						System.out.println();
-						//Enter Joint deposit
-						JointMoveMoney.setAccount();
-						JointMoveMoney.jointDeposit();
 					}else {
-						//User has not opened an account yet
-						Etc.empty();
+						Etc.status();
 					}
 				break;
 				case 4:
-					if(ApplyForAccount.accountCheck.contains(1)) {
+					if (daoa.checkStatus(CustomerLogin.usernameCheck)) {
 						System.out.println();
-						//User did not create a joint account
-						Etc.nonjoint();
-					}else if(ApplyForAccount.accountCheck.contains(2)){
-						//Enter Transfer Money
-						JointMoveMoney.transfer();
+						//Enter money transfer
+						MoveMoney.transfer();
 					}else {
-						//User has not created a joint account
-						Etc.nonjoint();
+						Etc.status();
 					}
 				break;
 				case 5:
-					//Show Account Information and Balance
-					Etc.showInfo();
+					//Show Account Information
+					System.out.println();
+					System.out.println("*********************************************************");
+					daoa.show(CustomerLogin.usernameCheck);
+					System.out.println();
 				break;
 				case 6:
-					//Go back to Driver
-					System.out.println();
-					Driver.main(null);
+					//Show Account Balance
+					MoveMoney.checkBalance();
 				break;
 				case 7:
+					//Go back to Driver
+					System.out.println();
+					System.out.println("*******************************************");
+					Driver.main(null);
+				break;
+				case 8:
 					//END Service
 					Etc.exit();
 				break;
@@ -100,7 +89,7 @@ public class CustomerMenu {
 				break;
 				}
 			}catch (Exception e) {
-				String error = scan.nextLine();
+				scan.nextLine();
 				//User did not respond with an integer
 				Etc.incorrect();
 			}
