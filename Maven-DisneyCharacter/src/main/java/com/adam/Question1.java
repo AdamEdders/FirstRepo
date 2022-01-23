@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Question1 {
-	
 	private static final Logger logger = LogManager.getLogger(Question1.class);
 	
 	//Do this to access variables in Driver class
