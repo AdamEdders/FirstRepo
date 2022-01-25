@@ -1,0 +1,2 @@
+2022-01-25 17:43:57.225 [main] ERROR com.adam.SQL.DAOMoney - $30.0 has been deposited into account number: 8185558
+2022-01-25 17:44:07.483 [main] ERROR com.adam.SQL.DAOMoney - $15.0 has been withdrawn from account number: 8185558

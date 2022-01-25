@@ -34,7 +34,7 @@ public class DAOMoney {
 			//Create Result Set			
 			statement.executeUpdate("UPDATE balances SET account_balance = account_balance +" + deposit + 
 					"WHERE account_number = " + accountNumber + ";"); 
-			logger.trace("$" + deposit + " has been deposited into account number: " + accountNumber);
+			logger.error("$" + deposit + " has been deposited into account number: " + accountNumber);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -65,7 +65,7 @@ public class DAOMoney {
 			//Create Result Set			
 			statement.executeUpdate("UPDATE balances SET account_balance = account_balance -" + withdraw + 
 					"WHERE account_number = " + accountNumber + ";"); 
-			logger.trace("$" + withdraw + " has been withdrawn from account number: " + accountNumber);
+			logger.error("$" + withdraw + " has been withdrawn from account number: " + accountNumber);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
