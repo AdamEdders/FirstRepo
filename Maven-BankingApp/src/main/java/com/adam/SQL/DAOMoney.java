@@ -5,7 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class DAOMoney {
+	private static final Logger logger = LogManager.getLogger(DAOMoney.class);
 	
 	@SuppressWarnings("unused")
 	public void fillAccount(String accountName, int accountNumber) {
@@ -30,6 +34,7 @@ public class DAOMoney {
 			//Create Result Set			
 			statement.executeUpdate("UPDATE balances SET account_balance = account_balance +" + deposit + 
 					"WHERE account_number = " + accountNumber + ";"); 
+			logger.trace("$" + deposit + " has been deposited into account number: " + accountNumber);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -60,6 +65,7 @@ public class DAOMoney {
 			//Create Result Set			
 			statement.executeUpdate("UPDATE balances SET account_balance = account_balance -" + withdraw + 
 					"WHERE account_number = " + accountNumber + ";"); 
+			logger.trace("$" + withdraw + " has been withdrawn from account number: " + accountNumber);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

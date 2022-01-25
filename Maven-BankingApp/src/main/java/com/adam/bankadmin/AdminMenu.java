@@ -7,7 +7,7 @@ import com.adam.Etc;
 import com.adam.MoveMoney;
 import com.adam.SQL.DAOAccounts;
 import com.adam.SQL.DAOMoney;
-import com.adam.employee.EmployeeAccountManagement;
+import com.adam.employee.EmployeeAccount;
 
 public class AdminMenu {
 	static Scanner scan = new Scanner(System.in);
@@ -54,7 +54,7 @@ public class AdminMenu {
 				case 3:
 					System.out.println();
 					//Enter Account Management
-					EmployeeAccountManagement.accounts();
+					EmployeeAccount.accounts();
 				break;
 				case 4:
 					System.out.println();

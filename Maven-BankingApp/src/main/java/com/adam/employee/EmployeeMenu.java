@@ -48,7 +48,7 @@ public class EmployeeMenu {
 				case 3:
 					System.out.println();
 					//Enter Account Management
-					EmployeeAccountManagement.accounts();
+					EmployeeAccount.accounts();
 				break;
 				case 4:
 					//Go back to Driver
